@@ -1087,17 +1087,19 @@ a#main-menu-act i:hover {
 .nav-tabs li a {
   border-color: #dbdee0;
   border-radius: 0px;
-  background: #e9ebec;
+  background: #ffffff;
   margin: 6px -1px -6px 0px;
   line-height: 1;
+  color: #9c9898 !important;
 }
-.nav-tabs li a:hover {
-  border-color: #dbdee0;
-  background: #dbdee0;
+.nav-tabs li.active {
+  border-top: 2px solid #ff006e !important;
 }
 .nav-tabs li.active > a {
   line-height: 1.428571429;
   margin: 0 -1px 0 0;
+  color: black;
+  font-weight: bold;
 }
 .nav-tabs .dropdown-menu > li > a {
   clear: both;
@@ -1111,7 +1113,7 @@ a#main-menu-act i:hover {
   margin: 0;
 }
 .nav-tabs .dropdown-menu > li > a:hover {
-  background: #f5f5f5;
+  background: #ffffff;
 }
 .nav-tabs .dropdown-menu > li.active > a {
   background: #428bca;
@@ -1128,10 +1130,15 @@ a#main-menu-act i:hover {
   padding: 10px;
 }
 .box .tab-pane {
-  border: 1px solid #dbdee0;
+  /*
+  theme-update-removed
+  border: 1px solid #dbdee0; */
   border-top: 0;
   padding: 10px;
   margin-top: -1px;
+}
+.nav-tabs {
+  border: none !important;
 }
 .tab-content .box {
   border-top: none;
