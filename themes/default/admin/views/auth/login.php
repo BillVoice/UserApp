@@ -5,48 +5,75 @@ foreach ($bgs as &$bg) {
     $bg = $assets . $af[1];
 }
 // $this->sma->print_arrays($bgs);
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title><?= $title ?></title>
-    <script type="text/javascript">if (parent.frames.length !== 0) { top.location = '<?=admin_url()?>'; }</script>
+    <script type="text/javascript">
+    if (parent.frames.length !== 0) {
+        top.location = '<?= admin_url() ?>';
+    }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="<?= $assets ?>images/icon.png"/>
-    <link href="<?= $assets ?>styles/theme.css" rel="stylesheet"/>
-    <link href="<?= $assets ?>styles/style.css" rel="stylesheet"/>
-    <link href="<?= $assets ?>styles/helpers/login.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="<?= $assets ?>images/icon.png" />
+    <link href="<?= $assets ?>styles/theme.css" rel="stylesheet" />
+    <link href="<?= $assets ?>styles/style.css" rel="stylesheet" />
+    <link href="<?= $assets ?>styles/helpers/login.css" rel="stylesheet" />
     <script type="text/javascript" src="<?= $assets ?>js/jquery-2.0.3.min.js"></script>
     <!--[if lt IE 9]>
     <script src="<?= $assets ?>js/respond.min.js"></script>
     <![endif]-->
     <style>
-        body {
-            min-width: 350px;
-        }
-        .bblue {
-            background: #fff !important;
-        }
-        .login-page .page-back {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
-            background-size: cover !important;
-            background-position: center !important;
-            /*background-image: url("<?= $bgs[mt_rand(0, count($bgs) - 1)] ?>") !important;*/
-        }
-        .contents {
-            margin: 16px;
-            border-radius: 6px;
-            padding: 32px 16px;
-            background: rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0, 0, 0, 0.2);
-        }
-        .login-content, .login-page .login-form-links {
-            margin-top: 20px;
-            border-radius: 6px;
-        }
+    body {
+        min-width: 350px;
+    }
+
+    .bblue {
+        background: #fff !important;
+    }
+
+    .login-page .page-back {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        background-size: cover !important;
+        background-color: #EEEEEE;
+        background-position: center !important;
+        /* background-image: url("<?= $bgs[0] ?>") !important; */
+    }
+
+    .login-card {
+        box-shadow: 0px 2px 30px #ccc6;
+        transition: transform 0.2s ease-in-out;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        width: 60%;
+        height: 85vh;
+        background-color: #fff;
+    }
+
+    .contents {
+        padding: 0 0 50px 0;
+        border-right: 2px solid #f1f1f1;
+    }
+
+    .text-primary {
+        color: #000000 !important;
+        font-size: 20px !important;
+    }
+
+    .login-content,
+    .login-page .login-form-links {
+        margin-top: 20px;
+        border-radius: 6px;
+    }
     </style>
 
 </head>
@@ -56,72 +83,69 @@ foreach ($bgs as &$bg) {
         <div class="global-site-notice noscript">
             <div class="notice-inner">
                 <p>
-                    <strong>JavaScript seems to be disabled in your browser.</strong><br>You must have JavaScript enabled in
+                    <strong>JavaScript seems to be disabled in your browser.</strong><br>You must have JavaScript
+                    enabled in
                     your browser to utilize the functionality of this website.
                 </p>
             </div>
         </div>
     </noscript>
     <div class="page-back">
-        <div class="contents">
-            <div class="text-center">
-                <?php if ($Settings->logo2) {
-    echo '<img src="' . base_url('assets/uploads/logos/' . $Settings->logo2) . '" alt="' . $Settings->site_name . '" style="margin-bottom:10px;" />';
-} ?>
-            </div>
+        <div class="login-card">
+            <div class="contents">
+                <div id="login">
+                    <div class="text-center">
+                        <?php if ($Settings->logo2) {
+                            echo '<img src="' . base_url('assets/uploads/logos/' . $Settings->logo2) . '" alt="' . $Settings->site_name . '" style="margin:20px 0;" />';
+                        } ?>
+                    </div>
+                    <div class="container">
 
-            <div id="login">
-                <div class="container">
-
-                    <div class="login-form-div">
-                        <div class="login-content">
-                            <?php if ($Settings->mmode) {
-    ?>
+                        <div class="login-form-div">
+                            <div class="login-content">
+                                <?php if ($Settings->mmode) {
+                                ?>
                                 <div class="alert alert-warning">
                                     <button data-dismiss="alert" class="close" type="button">×</button>
                                     <?= lang('site_offline') ?>
                                 </div>
                                 <?php
-}
-                            if ($error) {
+                                }
+                                if ($error) {
                                 ?>
                                 <div class="alert alert-danger">
                                     <button data-dismiss="alert" class="close" type="button">×</button>
                                     <ul class="list-group"><?= $error; ?></ul>
                                 </div>
                                 <?php
-                            }
-                            if ($message) {
+                                }
+                                if ($message) {
                                 ?>
                                 <div class="alert alert-success">
                                     <button data-dismiss="alert" class="close" type="button">×</button>
                                     <ul class="list-group"><?= $message; ?></ul>
                                 </div>
                                 <?php
-                            }
-                            ?>
-                            <?php echo admin_form_open('auth/login', 'class="login" data-toggle="validator"'); ?>
-                            <div class="div-title col-sm-12">
-                                <h3 class="text-primary"><?= lang('login_to_your_account') ?></h3>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="textbox-wrap form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" value="<?= DEMO ? 'owner@tecdiary.com' : ''; ?>" required="required" class="form-control" name="identity"
-                                        placeholder="<?= lang('username') ?>"/>
+                                }
+                                ?>
+                                <?php echo admin_form_open('auth/login', 'class="login" data-toggle="validator"'); ?>
+                                <div class="div-title col-sm-12">
+                                    <h3 class="text-primary">Sign in</h3>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="textbox-wrap form-group">
+                                        <input type="text" value="<?= DEMO ? 'owner@tecdiary.com' : ''; ?>"
+                                            required="required" class="form-control-cutom" name="identity"
+                                            placeholder="<?= lang('username') ?>" />
+                                    </div>
+                                    <div class="textbox-wrap form-group">
+                                        <input type="password" value="<?= DEMO ? '12345678' : ''; ?>"
+                                            required="required" class="form-control-cutom" name="password"
+                                            placeholder="<?= lang('pw') ?>" />
                                     </div>
                                 </div>
-                                <div class="textbox-wrap form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                        <input type="password" value="<?= DEMO ? '12345678' : ''; ?>" required="required" class="form-control " name="password"
-                                        placeholder="<?= lang('pw') ?>"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                            if ($Settings->captcha) {
+                                <?php
+                                if ($Settings->captcha) {
                                 ?>
                                 <div class="col-sm-12">
                                     <div class="textbox-wrap form-group">
@@ -132,7 +156,8 @@ foreach ($bgs as &$bg) {
                                             <div class="col-sm-6 div-captcha-right">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
-                                                        <a href="<?= admin_url('auth/reload_captcha'); ?>" class="reload-captcha">
+                                                        <a href="<?= admin_url('auth/reload_captcha'); ?>"
+                                                            class="reload-captcha">
                                                             <i class="fa fa-refresh"></i>
                                                         </a>
                                                     </span>
@@ -143,29 +168,20 @@ foreach ($bgs as &$bg) {
                                     </div>
                                 </div>
                                 <?php
-                            } /* echo $recaptcha_html; */
-                            ?>
+                                } /* echo $recaptcha_html; */
+                                ?>
 
-                            <div class="form-action col-sm-12">
-                                <div class="checkbox pull-left">
-                                    <div class="custom-checkbox">
-                                        <?php echo form_checkbox('remember', '1', false, 'id="remember"'); ?>
-                                    </div>
-                                    <span class="checkbox-text pull-left"><label for="remember"><?= lang('remember_me') ?></label></span>
+                                <div class="form-action col-sm-12">
+                                    <button type="submit" class="btn-lg-custom btn-primary-custom">Sign in</button>
                                 </div>
-                                <button type="submit" class="btn btn-success pull-right"><?= lang('login') ?> &nbsp; <i class="fa fa-sign-in"></i></button>
+                                <?php echo form_close(); ?>
+                                <div class="clearfix"></div>
                             </div>
-                            <?php echo form_close(); ?>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="login-form-links link2">
-                            <h4 class="text-danger"><?= lang('forgot_your_password') ?></h4>
-                            <span><?= lang('dont_worry') ?></span>
-                            <a href="#forgot_password" class="text-danger forgot_password_link"><?= lang('click_here') ?></a>
-                            <span><?= lang('to_rest') ?></span>
-                        </div>
-                        <?php
-                        if ($Settings->allow_reg) {
+                            <a href="#forgot_password" class="forgot-password">
+                                <h4 class="text-center forgot_password_link"><?= lang('forgot_your_password') ?></h4>
+                            </a>
+                            <?php
+                            if ($Settings->allow_reg) {
                             ?>
                             <div class="login-form-links link1">
                                 <h4 class="text-info"><?= lang('dont_have_account') ?></h4>
@@ -174,66 +190,65 @@ foreach ($bgs as &$bg) {
                                 <span><?= lang('to_register') ?></span>
                             </div>
                             <?php
-                        }
-                        ?>
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div id="forgot_password" style="display: none;">
-                <div class=" container">
-                    <div class="login-form-div">
-                        <div class="login-content">
-                            <?php
-                            if ($error) {
+                <div id="forgot_password" style="display: none;">
+                    <div class=" container">
+                        <div class="login-form-div">
+                            <div class="login-content">
+                                <?php
+                                if ($error) {
                                 ?>
                                 <div class="alert alert-danger">
                                     <button data-dismiss="alert" class="close" type="button">×</button>
                                     <ul class="list-group"><?= $error; ?></ul>
                                 </div>
                                 <?php
-                            }
-                            if ($message) {
+                                }
+                                if ($message) {
                                 ?>
                                 <div class="alert alert-success">
                                     <button data-dismiss="alert" class="close" type="button">×</button>
                                     <ul class="list-group"><?= $message; ?></ul>
                                 </div>
                                 <?php
-                            }
-                            ?>
-                            <div class="div-title col-sm-12">
-                                <h3 class="text-primary"><?= lang('forgot_password') ?></h3>
-                            </div>
-                            <?php echo admin_form_open('auth/forgot_password', 'class="login" data-toggle="validator"'); ?>
-                            <div class="col-sm-12">
-                                <p>
-                                    <?= lang('type_email_to_reset'); ?>
-                                </p>
-                                <div class="textbox-wrap form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon "><i class="fa fa-envelope"></i></span>
-                                        <input type="email" name="forgot_email" class="form-control "
-                                        placeholder="<?= lang('email_address') ?>" required="required"/>
+                                }
+                                ?>
+                                <div class="div-title col-sm-12">
+                                    <h3 class="text-primary"><?= lang('forgot_password') ?></h3>
+                                </div>
+                                <?php echo admin_form_open('auth/forgot_password', 'class="login" data-toggle="validator"'); ?>
+                                <div class="col-sm-12">
+                                    <p>
+                                        <?= lang('type_email_to_reset'); ?>
+                                    </p>
+                                    <div class="textbox-wrap form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon "><i class="fa fa-envelope"></i></span>
+                                            <input type="email" name="forgot_email" class="form-control "
+                                                placeholder="<?= lang('email_address') ?>" required="required" />
+                                        </div>
+                                    </div>
+                                    <div class="form-action">
+                                        <a class="btn btn-success pull-left login_link" href="#login">
+                                            <i class="fa fa-chevron-left"></i> <?= lang('back') ?>
+                                        </a>
+                                        <button type="submit" class="btn btn-primary pull-right">
+                                            <?= lang('submit') ?> &nbsp;&nbsp; <i class="fa fa-envelope"></i>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="form-action">
-                                    <a class="btn btn-success pull-left login_link" href="#login">
-                                        <i class="fa fa-chevron-left"></i> <?= lang('back') ?>
-                                    </a>
-                                    <button type="submit" class="btn btn-primary pull-right">
-                                        <?= lang('submit') ?> &nbsp;&nbsp; <i class="fa fa-envelope"></i>
-                                    </button>
-                                </div>
+                                <?php echo form_close(); ?>
+                                <div class="clearfix"></div>
                             </div>
-                            <?php echo form_close(); ?>
-                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <?php
-            if ($Settings->allow_reg) {
+                <?php
+                if ($Settings->allow_reg) {
                 ?>
                 <div id="register">
                     <div class="container">
@@ -247,7 +262,8 @@ foreach ($bgs as &$bg) {
                                     <?= lang('first_name', 'first_name'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon "><i class="fa fa-user"></i></span>
-                                        <input type="text" name="first_name" class="form-control " placeholder="<?= lang('first_name') ?>" required="required"/>
+                                        <input type="text" name="first_name" class="form-control "
+                                            placeholder="<?= lang('first_name') ?>" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +272,8 @@ foreach ($bgs as &$bg) {
                                     <?= lang('last_name', 'last_name'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon "><i class="fa fa-user"></i></span>
-                                        <input type="text" name="last_name" class="form-control " placeholder="<?= lang('last_name') ?>" required="required"/>
+                                        <input type="text" name="last_name" class="form-control "
+                                            placeholder="<?= lang('last_name') ?>" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +282,8 @@ foreach ($bgs as &$bg) {
                                     <?= lang('company', 'company'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon "><i class="fa fa-building"></i></span>
-                                        <input type="text" name="company" class="form-control " placeholder="<?= lang('company') ?>"/>
+                                        <input type="text" name="company" class="form-control "
+                                            placeholder="<?= lang('company') ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -274,7 +292,8 @@ foreach ($bgs as &$bg) {
                                     <?= lang('phone', 'phone'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon "><i class="fa fa-phone-square"></i></span>
-                                        <input type="text" name="phone" class="form-control " placeholder="<?= lang('phone') ?>" required="required"/>
+                                        <input type="text" name="phone" class="form-control "
+                                            placeholder="<?= lang('phone') ?>" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +302,8 @@ foreach ($bgs as &$bg) {
                                     <?= lang('username', 'username'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon "><i class="fa fa-user"></i></span>
-                                        <input type="text" name="username" class="form-control " placeholder="<?= lang('username') ?>" required="required"/>
+                                        <input type="text" name="username" class="form-control "
+                                            placeholder="<?= lang('username') ?>" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -292,7 +312,8 @@ foreach ($bgs as &$bg) {
                                     <?= lang('email', 'email'); ?>
                                     <div class="input-group">
                                         <span class="input-group-addon "><i class="fa fa-envelope"></i></span>
-                                        <input type="email" name="email" class="form-control " placeholder="<?= lang('email_address') ?>" required="required"/>
+                                        <input type="email" name="email" class="form-control "
+                                            placeholder="<?= lang('email_address') ?>" required="required" />
                                     </div>
                                 </div>
                             </div>
@@ -331,8 +352,13 @@ foreach ($bgs as &$bg) {
                     </div>
                 </div>
                 <?php
-            }
-            ?>
+                }
+                ?>
+            </div>
+            <div>
+                <image src="<?= $assets ?>images/login-bgs/login-svg1.png" class="login-card-image"></image>
+                <p class="login-card-image-dec text-center">Handle all your restaurant issues with just one click</p>
+            </div>
         </div>
     </div>
     <script src="<?= $assets ?>js/jquery.js"></script>
@@ -340,14 +366,15 @@ foreach ($bgs as &$bg) {
     <script src="<?= $assets ?>js/jquery.cookie.js"></script>
     <script src="<?= $assets ?>js/login.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            localStorage.clear();
-            var hash = window.location.hash;
-            if (hash && hash != '') {
-                $("#login").hide();
-                $(hash).show();
-            }
-        });
+    $(document).ready(function() {
+        localStorage.clear();
+        var hash = window.location.hash;
+        if (hash && hash != '') {
+            $("#login").hide();
+            $(hash).show();
+        }
+    });
     </script>
 </body>
+
 </html>
