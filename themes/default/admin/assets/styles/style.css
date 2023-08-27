@@ -72,7 +72,7 @@ h6 {
 }
 .lt td {
   vertical-align: top;
-  background-color: #fff;
+  background-color: #EEEEEE;
 }
 .lt td.sidebar-con {
   width: 250px;
@@ -82,7 +82,8 @@ h6 {
   width: 0px;
 }
 #content {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background-color: #EEEEEE;
   padding: 0 15px;
   transition: transform 0.2s ease-in-out 0s, margin 0.2s ease-in-out 0s;
 }
@@ -163,7 +164,8 @@ h6 {
 }
 .box {
   background-color: #fff;
-  box-shadow: 0px 0px 8px -2px rgba(140, 140, 140, 1);
+  /* box-shadow: 0px 0px 8px -2px rgba(140, 140, 140, 1); */
+  box-shadow: 0px 2px 30px #ccc6;
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
   border-radius: 4px;
@@ -816,6 +818,7 @@ a#main-menu-act i:hover {
   white-space: nowrap;
 }
 .sidebar-nav > ul > li {
+  padding: 4px 0;
 }
 .sidebar-nav > ul > li > ul,
 .sidebar-nav > ul > li > ul > li > ul,
@@ -878,12 +881,12 @@ a#main-menu-act i:hover {
 }
 .nav.main-menu > li > a > i,
 .nav.main-menu > li > ul > li > a > i {
-  margin-right: 10px;
-  height: 38px;
-  width: 40px;
-  padding: 13px 0px;
-  display: inline-block;
-  text-align: center;
+  font-size: 20px;
+    margin: 0 6px 0 11px;
+    width: 32px;
+    padding: 7px 0px;
+    display: inline-block;
+    text-align: center;
 }
 .nav.main-menu > li > ul > li > a > i,
 .nav.main-menu > li > ul > li > ul > li > a > i,
@@ -944,14 +947,14 @@ a#main-menu-act i:hover {
   border-bottom: 0;
 }
 #sidebar-left.minified {
-  width: 40px !important;
+  width: 60px !important;
   margin-right: -40px;
 }
 #sidebar-left.minified .sidebar-nav > ul > li {
   position: relative;
 }
 #sidebar-left.minified .sidebar-nav > ul > li > a {
-  width: 40px;
+  width: 60px;
   position: relative;
 }
 #sidebar-left.minified .sidebar-nav > ul > li > a.open {
@@ -1052,6 +1055,10 @@ a#main-menu-act i:hover {
 }
 #sidebar-left.minified .sidebar-nav > ul > li.active > li > a {
   border-color: #5bc0de;
+}
+.menu-item-links-text{
+  color: white !important;
+  margin-bottom: 40px;
 }
 @media (max-width: 991px) {
   /*.table-responsive {
